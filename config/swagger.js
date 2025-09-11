@@ -17,8 +17,10 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: `http://localhost:${PORT}`,
-        description: 'Serveur de développement'
+        url: process.env.VERCEL_URL
+          ? `https://${process.env.VERCEL_URL}`
+          : `http://localhost:${PORT}`,
+        description: 'Serveur dynamique (local ou Vercel)'
       }
     ],
     tags: [

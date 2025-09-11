@@ -1,4 +1,6 @@
 const swaggerJsdoc = require('swagger-jsdoc');
+const fs = require('fs');
+const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 
@@ -42,7 +44,7 @@ const swaggerOptions = {
       }
     ]
   },
-  apis: ['./routes/*.js'], // Swagger lira tous les fichiers de routes
+  apis: [path.join(__dirname, '../routes/*.js')],
 };
 
 const specs = swaggerJsdoc(swaggerOptions);
@@ -52,7 +54,14 @@ const options = {
   customSiteTitle: "API Candidat - Documentation"
 };
 
+const generateJson = () => {
+  const outputPath = path.join(__dirname, '../swagger.json');
+  fs.writeFileSync(outputPath, JSON.stringify(specs, null, 2));
+  console.log(`Swagger JSON generated at ${outputPath}`);
+};
+
 module.exports = {
   specs,
-  options
+  options,
+  generateJson
 };

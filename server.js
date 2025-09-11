@@ -1,7 +1,7 @@
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const corsConfig = require('./config/cors');
-const swaggerConfig = require('./config/swagger');
+const path = require('path');
 
 const indexRoutes = require('./routes/index');
 const profileRoutes = require('./routes/profile');
@@ -17,7 +17,8 @@ const PORT = process.env.PORT || 3000;
 app.use(corsConfig);
 app.use(express.json());
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig.specs, swaggerConfig.options));
+const swaggerDocument = require('./swagger.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/', indexRoutes);
 app.use('/profile', profileRoutes);

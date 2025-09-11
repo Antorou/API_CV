@@ -7,7 +7,7 @@
     "contact": {
       "name": "Antoine Rousselot",
       "email": "rousselotantoine7@gmail.com",
-      "url": "https://portfolio-git-main-antorous-projects.vercel.app/'"
+      "url": "https://portfolio-git-main-antorous-projects.vercel.app/"
     }
   },
   "servers": [
@@ -67,6 +67,19 @@
         }
       }
     },
+    "/motivation": {
+      "get": {
+        "summary": "Récupère les motivations du candidat",
+        "tags": [
+          "Motivation"
+        ],
+        "responses": {
+          "200": {
+            "description": "Motivations et aspirations"
+          }
+        }
+      }
+    },
     "/profile": {
       "get": {
         "summary": "Récupère le profil complet du candidat",
@@ -113,6 +126,56 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "summary": "Récupère tous les projets",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tech",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filtre par technologie"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liste des projets"
+          }
+        }
+      }
+    },
+    "/projects/{id}": {
+      "get": {
+        "summary": "Récupère un projet spécifique",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID du projet"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Détails du projet"
+          },
+          "404": {
+            "description": "Projet non trouvé"
           }
         }
       }
@@ -178,69 +241,6 @@
         }
       }
     },
-    "/projects": {
-      "get": {
-        "summary": "Récupère tous les projets",
-        "tags": [
-          "Projects"
-        ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "tech",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Filtre par technologie"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Liste des projets"
-          }
-        }
-      }
-    },
-    "/projects/{id}": {
-      "get": {
-        "summary": "Récupère un projet spécifique",
-        "tags": [
-          "Projects"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "description": "ID du projet"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Détails du projet"
-          },
-          "404": {
-            "description": "Projet non trouvé"
-          }
-        }
-      }
-    },
-    "/motivation": {
-      "get": {
-        "summary": "Récupère les motivations du candidat",
-        "tags": [
-          "Motivation"
-        ],
-        "responses": {
-          "200": {
-            "description": "Motivations et aspirations"
-          }
-        }
-      }
-    },
     "/stats": {
       "get": {
         "summary": "Statistiques du profil",
@@ -254,5 +254,6 @@
         }
       }
     }
-  }
+  },
+  "components": {}
 }

@@ -2,31 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "./server.js",
-      "use": "@vercel/node",
-      "config": {
-        "maxLambdaSize": "15mb"
-      }
+      "src": "server.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api-docs",
-      "dest": "/server.js"
+      "src": "/api-docs/(.*)",
+      "dest": "server.js"
     },
     {
       "src": "/swagger.json",
-      "dest": "/swagger.json"
+      "dest": "swagger.json"
     },
     {
       "src": "/(.*)",
-      "dest": "/server.js"
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/api-docs/(.*)",
-      "destination": "/server.js"
+      "dest": "server.js"
     }
   ]
 }

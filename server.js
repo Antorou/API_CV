@@ -28,9 +28,11 @@ app.use('/stats', statsRoutes);
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`API Candidat démarrée sur http://localhost:${PORT}`);
-  console.log(`La documentation est disponible sur http://localhost:${PORT}/api-docs`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`API Candidat démarrée sur http://localhost:${PORT}`);
+    console.log(`Documentation Swagger dispo sur http://localhost:${PORT}/api-docs`);
+  });
+}
 
 module.exports = app;

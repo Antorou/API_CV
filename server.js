@@ -2,6 +2,7 @@ const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const corsConfig = require('./config/cors');
 const swaggerConfig = require('./config/swagger');
+const serverless = require('serverless-http');
 
 const indexRoutes = require('./routes/index');
 const profileRoutes = require('./routes/profile');
@@ -35,4 +36,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = app;
+module.exports = serverless(app);

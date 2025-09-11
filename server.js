@@ -17,6 +17,7 @@ const PORT = process.env.PORT || 3000;
 app.use(corsConfig);
 app.use(express.json());
 
+// Serve static swagger.json file
 const swaggerDocument = require('./swagger.json');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
